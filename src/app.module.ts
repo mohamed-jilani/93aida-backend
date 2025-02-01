@@ -6,7 +6,7 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { QuestionsModule } from './questions/questions.module';
-import { CategoryModule } from './category/category.module';
+import { CategoryModule } from './category/categories.module';
 
 @Module({
   imports: [

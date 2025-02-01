@@ -7,10 +7,19 @@ export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
   // Créer une nouvelle question
+  /*
   @Post()
   async create(@Body() createQuestionDto: { text: string; options?: string[] }): Promise<Question> {
     return this.questionsService.createQuestion(createQuestionDto.text, createQuestionDto.options);
   }
+  */
+
+  @Post()
+  async create(@Body() body: { text: string; options: string[]; categoryIds: string[] }): Promise<Question> {
+    return this.questionsService.createQuestion(body.text, body.options, body.categoryIds);
+  }
+
+
 
   // Récupérer toutes les questions
   @Get()
@@ -26,8 +35,8 @@ export class QuestionsController {
 
   // Mettre à jour une question
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updateQuestionDto: { text: string; options?: string[] }): Promise<Question> {
-    return this.questionsService.updateQuestion(id, updateQuestionDto.text, updateQuestionDto.options);
+  async update(@Param('id') id: string, @Body() updateQuestionDto: { text: string; options?: string[]; categoryIds: string[] }): Promise<Question> {
+    return this.questionsService.updateQuestion(id, updateQuestionDto.text, updateQuestionDto.options, updateQuestionDto.categoryIds );
   }
 
   // Supprimer une question
